@@ -28,3 +28,4 @@ local.properties
 
 # testNG
 .test-output/
+/target/

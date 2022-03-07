@@ -1,18 +1,14 @@
 package pages;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 
 import base.TestBase;
 
 public class Checkout extends TestBase {
-	
+   
    By payWithCard = By.xpath("//button[@type='submit']");
    By totalRupees = By.xpath("//p[@id='total']");
    By email = By.xpath("//*[@id=\"email\"]");
@@ -22,22 +18,24 @@ public class Checkout extends TestBase {
    By zip = By.id("billing-zip");
    By payBtn = By.id("submitButton");
    
-	public void clickPayWithCardBtn() {
+   //Method to click 'Pay with Card' button
+   public void clickPayWithCardBtn() {
 		driver.findElement(payWithCard).click();
 	}
 	
+   //Method to get Total Amount in rupees below Item details table
 	public String getTotalRupees() {
 		return driver.findElement(totalRupees).getText().replace("Total:","").replace("Rupees","").replace(" ","");
 	}
 	
+	//Method to enter email on Stripe popup window
 	public void enterEmail(String user_email) {
 		explicitWait(email);
 		driver.findElement(email).sendKeys(user_email);
 	}
 	
+	//Method to enter credit card details on Stripe popup window
 	public void enterCreditCardDetails(String cc_number, String cc_expiry, String cc_cvv, String zipCode) {
-		//explicitWait(creditCardNumber);
-		//driver.findElement(creditCardNumber).sendKeys(cc_number);
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;  
 		jsExecutor.executeScript("document.getElementById('card_number').value='"+cc_number+"'");
 		jsExecutor.executeScript("document.getElementById('cc-exp').value='"+cc_expiry+"'");
@@ -45,11 +43,12 @@ public class Checkout extends TestBase {
 		jsExecutor.executeScript("document.getElementById('billing-zip').value='"+zipCode+"'");
 	}
 	
+	//Method to click on Pay button on Stripe popup window
 	public void clickPayBtn() {
 		driver.findElement(payBtn).click();
 	}
 	
-
+	//Method to return Item details from table on Checkout page
 	public HashMap<String, String> getItemDetails() {
 		HashMap<String, String> itemAndPriceMap = new HashMap<String, String>();
 		
@@ -61,13 +60,13 @@ public class Checkout extends TestBase {
 		return itemAndPriceMap;
 	}
 	
+	//Method to switch on Stripe popup window
 	public void switchToStripeFrame() {
-	     
 	      driver.switchTo().frame("stripe_checkout_app");
 	}
 	
+	//Method to switch back to parent frame
 	public void switchToParentFrame() {
-	     
 	      driver.switchTo().parentFrame();
 	}
 

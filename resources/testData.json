@@ -1,8 +1,8 @@
 {
-"moisturizer_item1": "Aloe",
-"moisturizer_item2": "Almond"
-"sunscreen_item1": "SPF-50",
-"sunscreen_item2": "SPF-30",
+"moisturizer_aloe": "Aloe",
+"moisturizer_almond": "Almond"
+"sunscreen_spf50": "SPF-50",
+"sunscreen_spf30": "SPF-30",
 "email": "test@gmail.com"
 "credit_card_number": "4242424242424242",
 "credit_card_cvv": "123"

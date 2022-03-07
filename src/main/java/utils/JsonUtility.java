@@ -10,6 +10,10 @@ import org.json.simple.parser.ParseException;
 
 public class JsonUtility {
 
+	/*
+	 * This methods returns test data which are stored in form of key-value
+	 * pairs in testData.json file
+	 */
 	public String getData(String key) throws FileNotFoundException, IOException, ParseException{
 
 		String value;
