@@ -23,6 +23,8 @@ Or If you are on Sunscreens page, then add least expensive item of type ‘SPF-5
 
 How to run automated test case: Right click on ‘testing.xml’ file -> Run As -> TestNG Suite.
 
+Test Case Execution Report: report is generated under 'test-output' folder named 'index.html' 
+
 Note: 
 1.	As requirement was to automate single test case, hence same test case is mentioned twice in testing.xml file to demonstrate parallel execution, same test case runs on two different browsers Chrome & Firefox parallelly.
 2.	Running test case directly from tests-> WeatherShopperTest.java file will not work as test case needs parameter – ‘browser’ which is being passed from testing.xml file, hence we need to run the test from testing.xml file only
