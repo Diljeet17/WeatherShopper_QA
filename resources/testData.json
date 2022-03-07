@@ -1,0 +1,12 @@
+{
+"moisturizer_item1": "Aloe",
+"moisturizer_item2": "Almond"
+"sunscreen_item1": "SPF-50",
+"sunscreen_item2": "SPF-30",
+"email": "test@gmail.com"
+"credit_card_number": "4242424242424242",
+"credit_card_cvv": "123"
+"credit_card_expiry": "10/25"
+"zip_code": "54321",
+"success_message": "Your payment was successful. You should receive a follow-up call from our sales team."
+}
