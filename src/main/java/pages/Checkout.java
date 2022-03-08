@@ -5,18 +5,22 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
-import base.TestBase;
-
-public class Checkout extends TestBase {
+public class Checkout extends BasePage {
    
+   WebDriver driver;
    By payWithCard = By.xpath("//button[@type='submit']");
    By totalRupees = By.xpath("//p[@id='total']");
-   By email = By.xpath("//*[@id=\"email\"]");
+   By email = By.xpath("//*[@id='email']");
    By creditCardNumber = By.id("card_number");
    By ccExpiry = By.id("cc-exp");
    By ccCVV = By.id("cc-csc");
    By zip = By.id("billing-zip");
    By payBtn = By.id("submitButton");
+   
+   public Checkout(WebDriver driver) {
+	   super(driver);
+		this.driver=driver;
+   }
    
    //Method to click 'Pay with Card' button
    public void clickPayWithCardBtn() {
@@ -30,7 +34,7 @@ public class Checkout extends TestBase {
 	
 	//Method to enter email on Stripe popup window
 	public void enterEmail(String user_email) {
-		explicitWait(email);
+		//waitForElementVisibility(email);
 		driver.findElement(email).sendKeys(user_email);
 	}
 	
@@ -61,8 +65,14 @@ public class Checkout extends TestBase {
 	}
 	
 	//Method to switch on Stripe popup window
-	public void switchToStripeFrame() {
+	public void switchToStripeFrame() throws InterruptedException {
 	      driver.switchTo().frame("stripe_checkout_app");
+			/*
+			 * As execution is fast on chrome browser, sometimes even if it has switched to
+			 * window, next step fails so had to use this kind of explicit wait as with
+			 * WebDriverWait object it was quite unstable
+			 */
+	      Thread.sleep(3000); 
 	}
 	
 	//Method to switch back to parent frame

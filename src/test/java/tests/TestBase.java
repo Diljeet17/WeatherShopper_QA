@@ -1,21 +1,24 @@
-package base;
+package tests;
 
 import java.time.Duration;
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestBase {
 
 	public static WebDriver driver;
 	
-	public static void initialization(String browserName){
+	@Parameters("browser")
+	@BeforeClass
+	public void initialization(String browserName){
 		
 		switch(browserName.toLowerCase()) {
 		
@@ -49,15 +52,11 @@ public class TestBase {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 		
 		driver.get("https://weathershopper.pythonanywhere.com/");
-			
 	}
 	
-	//This method helps in explicitly waiting for given element
-	public void explicitWait(By locator) {
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(15));
-		wait.until(ExpectedConditions.elementToBeClickable(locator));
-		
-	}
-	
-	
+	//Method to close browser
+	@AfterTest
+	public void closeBrowser() {
+		driver.close();
+	}	
 }

@@ -7,14 +7,17 @@ import java.util.Map.Entry;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import base.TestBase;
+//import base.TestBase;
 import pages.Checkout;
 import pages.CommonElements;
 import pages.Confirmation;
 import pages.Home;
+//import pages.TestBase;
 import utils.JsonUtility;
 
 public class WeatherShopperTest extends TestBase {
@@ -26,20 +29,21 @@ public class WeatherShopperTest extends TestBase {
 	JsonUtility jsonUtility;
 
 	
-	@BeforeTest
-	@Parameters("browser")
-	public void setUp(String browser) {
-		initialization(browser);
-		homePage = new Home();
-		checkoutPage = new Checkout();
-		commonElements = new CommonElements();
-		confirmationPage = new Confirmation();
-		jsonUtility = new JsonUtility();
-		
-	}
+	/*
+	 * @BeforeSuite public void setUp(String browser) { //initialization(browser);
+	 * homePage = new Home(driver); checkoutPage = new Checkout(driver);
+	 * commonElements = new CommonElements(driver); confirmationPage = new
+	 * Confirmation(driver); jsonUtility = new JsonUtility(); }
+	 */
 
 	@Test(priority=1)
-	public void weatherShopperTest() throws FileNotFoundException, IOException, ParseException {
+	public void weatherShopperTest() throws FileNotFoundException, IOException, ParseException, InterruptedException {
+		
+		homePage = new Home(driver);
+		checkoutPage = new Checkout(driver);
+		commonElements = new CommonElements(driver);
+		confirmationPage = new Confirmation(driver);
+		jsonUtility = new JsonUtility();
 		
 		int currentTemperature;
 	    HashMap<String, String> leastExpensiveItem1Detail = null;
@@ -75,18 +79,13 @@ public class WeatherShopperTest extends TestBase {
 			validateBuyFlow(leastExpensiveItem1Detail, leastExpensiveItem2Detail);
 		}
 	}
-	
-	@AfterMethod
-	public void closeBrowser() {
-		//driver.close();
-	}
-	
+		
 	/*
 	 * This method adds items to Car, validates items appear on Checkout page as
 	 * expected & then does payment process by entering email, credit card details &
 	 * then checks for success message on Confirmation page
 	 */
-	public void validateBuyFlow(HashMap<String, String> leastExpensiveItem1Detail, HashMap<String, String> leastExpensiveItem2Detail) {
+	public void validateBuyFlow(HashMap<String, String> leastExpensiveItem1Detail, HashMap<String, String> leastExpensiveItem2Detail) throws InterruptedException {
 		String leastExpensiveItem1Name = null;
 	    int leastExpensiveItem1Price = 0;
 	    String leastExpensiveItem2Name = null;
@@ -165,6 +164,5 @@ public class WeatherShopperTest extends TestBase {
 		 * message appears then following assertion will fail
 		 */
 		Assert.assertEquals(confirmationPage.getMessage(), "Your payment was successful. You should receive a follow-up call from our sales team.");
-		//driver.close();
 	}
 }

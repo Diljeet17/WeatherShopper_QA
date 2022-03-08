@@ -3,11 +3,15 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import base.TestBase;
-
-public class Confirmation extends TestBase {
+public class Confirmation extends BasePage{
 	
+    WebDriver driver;
 	By message = By.xpath("//p[@class='text-justify']");
+	
+	public Confirmation(WebDriver driver) {
+		super(driver);
+		this.driver=driver;
+	}
 	
 	//Method to returns success/failure message
 	public String getMessage() {

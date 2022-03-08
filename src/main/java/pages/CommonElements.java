@@ -6,17 +6,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import org.openqa.selenium.By;
-import base.TestBase;
+import org.openqa.selenium.WebDriver;
 
 /*This class addressess common elements present on Moisturizers 
 & Sunscreens page & possible operation with respect to them*/
-public class CommonElements extends TestBase {
+public class CommonElements extends BasePage {
 	
+    WebDriver driver;
     By cart = By.xpath("//button[@class='thin-text nav-link']");
+    
+    public CommonElements(WebDriver driver) {
+    	super(driver);
+		this.driver=driver;
+	}
 	
     //Method to click on Cart button present on top right side of Moisturizers/Sunscreens page
 	public void clickCartBtn() {
-		explicitWait(cart);
+		waitForElementToBeClickable(cart);
 		driver.findElement(cart).click();
 	}
 	

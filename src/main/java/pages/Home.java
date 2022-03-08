@@ -4,13 +4,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import base.TestBase;
 
-public class Home extends TestBase {
+public class Home extends BasePage {
 	
+    WebDriver driver;
 	By temperature = By.id("temperature");
 	By buyMoisturizersButton = By.xpath("//a[@href='/moisturizer']");
 	By buySunscreensButton = By.xpath("//a[@href='/sunscreen']");
+	
+	public Home(WebDriver driver) {
+		super(driver);
+		this.driver=driver;
+	}
 	
 	//Method to get current temperature
 	public int getCurrentTemperature() {
