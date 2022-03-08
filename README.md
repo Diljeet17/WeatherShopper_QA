@@ -10,6 +10,16 @@ Project: Maven based in which ‘pom.xml’ file contains all the dependencies l
 Installation Perquisites: Java 1.8 or above, Any IDE (Eclipse/IntelliJ etc)
 
 Advantage of using POM: As locators & actions are defined once & can be used multiple Programming times for any number of test cases, this way POM helps us reducing code duplication & improving test case maintenance. 
+
+Framework Structure:
+a.	‘pages’ package contains all the page files corresponding to application screens
+b.	‘utils’ package has JsonUtility.java file to read test data
+c.	‘src/test/java’ contains test case
+d.	‘resources’ folder contains ‘testData.json’ file
+e.	‘test-output’ folder reports, ‘emailable-report.html’ or ‘index.html’ should be checked for results.
+f.	‘pom.xml’ contains all the dependencies.
+g.	testing.xml file -> this should be used to run test case.
+
 Test Case (this has been automated):
 1.	Check Current Temperature on Weather Shopper site
 2.	If Current Temperature is below 19 degree celcius then click on ‘Buy Moisturizers’ button, if Current Temperature is above 34 degree celcius then click on ‘Buy Sunscreens’ button.
