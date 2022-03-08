@@ -12,13 +12,13 @@ Installation Perquisites: Java 1.8 or above, Any IDE (Eclipse/IntelliJ etc)
 Advantage of using POM: As locators & actions are defined once & can be used multiple Programming times for any number of test cases, this way POM helps us reducing code duplication & improving test case maintenance. 
 
 Framework Structure:
-a.	‘pages’ package contains all the page files corresponding to application screens
-b.	‘utils’ package has JsonUtility.java file to read test data
-c.	‘src/test/java’ contains test case
-d.	‘resources’ folder contains ‘testData.json’ file
-e.	‘test-output’ folder reports, ‘emailable-report.html’ or ‘index.html’ should be checked for results.
-f.	‘pom.xml’ contains all the dependencies.
-g.	testing.xml file -> this should be used to run test case.
+1. ‘pages’ package contains all the page files corresponding to application screens
+2.	‘utils’ package has JsonUtility.java file to read test data
+3.	‘src/test/java’ contains test case
+4.	‘resources’ folder contains ‘testData.json’ file
+5.	‘test-output’ folder reports, ‘emailable-report.html’ or ‘index.html’ should be checked for results.
+6.	‘pom.xml’ contains all the dependencies.
+7.	testing.xml file -> this should be used to run test case.
 
 Test Case (this has been automated):
 1.	Check Current Temperature on Weather Shopper site
@@ -29,7 +29,7 @@ Or If you are on Sunscreens page, then add least expensive item of type ‘SPF-5
 5.	On Checkout page, verify details of items like Item Name & Price from step 3. Also, verify Total Amount is displayed as actual total of both the items.
 6.	Click on ‘Pay with Card’ button, pop up window will be displayed asking Email & Credit Card details.
 7.	After entering details from step 6, click on Pay button.
-8.	Confirmation page is displayed with success message “Your payment was successful. You should receive a follow-up call from our sales team.”
+8.	Confirmation page is displayed with success message “Your payment was successful. You should receive a follow-up call from our sales team.” As website information says there are 5% chances there can be failures after payment, so in this case Assertion will fail & test case will fail eventually.
 
 How to run automated test case: Right click on ‘testing.xml’ file -> Run As -> TestNG Suite.
 
